@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:/www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <title>Panel de libros</title>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: black">
+        <a class="navbar-brand" href="#" style="color: paleturquoise;">LIBRERIA ONLINE</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" style="color: paleturquoise;">INICIO <span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" style="color: paleturquoise;">LIBROS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" style="color: paleturquoise;">AUTORES</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- TITULO -->
+    <h1 style="position: absolute; text-align: center; left: 40%;">LISTA DE LIBROS</h1>
+
+    <!-- IMAGEN -->
+    <img src="https://media.revistaad.es/photos/60c7532319568b35bfa29d22/master/w_1600%2Cc_limit/33035.jpg"
+        alt="imagen lista de libros" width="100%" height="100%">
+
+    <!-- TABLA DE LIBROS -->
+    <table class="table table-dark" style="position: absolute; top: 40%;">
+        <thead>
+            <tr>
+
+                <th scope="col">ISBN</th>
+                <th scope="col">Titulo</th>
+                <th scope="col">Año</th>
+                <th scope="col">Ejemplares</th>
+                <th scope="col">Ejemplares Prestados</th>
+                <th scope="col">Ejemplares Restantes</th>
+                <th scope="col">Autor</th>
+                <th scope="col">Editorial</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody th:each="libro : ${libros}">
+            <tr>
+
+                <td th:text="${libro.ISBN}"></td>
+                <td th:text="${libro.titulo}"></td>
+                <td th:text="${libro.anio}"></td>
+                <td th:text="${libro.ejemplares}"></td>
+                <td th:text="${libro.ejemplaresPrestados}"></td>
+                <td th:text="${libro.ejemplaresRestantes}"></td>
+                <td th:text="${libro.autor.nombreAutor}"></td>
+                <td th:text="${libro.editorial.nombreEditorial}"></td>
+                <td>
+                    <a th:href="@{/libro/modificar/__${libro.id}__}" class="btn btn-success">Modificar</a>
+                    <a th:href="@{/libro/eliminar/__${libro.id}__}" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <!-- BOTON DE ENVIAR -->
+    <a th:href="@{/libro/registro}" class="btn btn-primary my-2" style="position:absolute; top: 80%;left: 45%;">Ingresar Libro</a>
+
+        <!-- CODIGOS BOOTSTRAP -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
+        </script>
+</body>
+
+</html>
